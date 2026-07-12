@@ -1,0 +1,561 @@
+﻿.section {
+  position: relative;
+  background: #e8e8e3;
+  color: #080807;
+}
+
+.intro {
+  min-height: 110vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(120px, 15vw, 240px)
+    clamp(22px, 3.5vw, 58px);
+}
+
+.introMeta {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 24px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid rgba(8, 8, 7, 0.2);
+  color: rgba(8, 8, 7, 0.58);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.introMeta span:nth-child(2) {
+  text-align: center;
+}
+
+.intro h2 {
+  margin: clamp(75px, 9vw, 130px) 0 55px;
+  font-size: clamp(5rem, 11vw, 13rem);
+  font-weight: 500;
+  line-height: 0.79;
+  letter-spacing: -0.085em;
+  text-transform: uppercase;
+}
+
+.headingLine {
+  display: block;
+  padding-bottom: 0.1em;
+}
+
+.intro h2 span:nth-child(2) {
+  margin-left: 12%;
+}
+
+.intro h2 em {
+  margin-left: 48%;
+  color: #b4161e;
+  font-style: normal;
+}
+
+.intro > p {
+  max-width: 500px;
+  margin-left: auto;
+  color: rgba(8, 8, 7, 0.6);
+  font-size: clamp(1rem, 1.25vw, 1.2rem);
+  line-height: 1.75;
+}
+
+.productExperience {
+  display: grid;
+  grid-template-columns: minmax(500px, 1.05fr) minmax(470px, 0.95fr);
+  background: #080807;
+  color: #e8e8e3;
+}
+
+.visualColumn {
+  position: relative;
+  border-right: 1px solid rgba(232, 232, 227, 0.18);
+}
+
+.stickyVisual {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  padding: clamp(50px, 7vw, 110px);
+}
+
+.productVisual {
+  position: relative;
+  z-index: 3;
+  width: min(100%, 670px);
+  aspect-ratio: 0.82;
+  overflow: hidden;
+  padding: clamp(24px, 3vw, 44px);
+  animation: product-change 650ms
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes product-change {
+  from {
+    opacity: 0;
+    transform: scale(0.9) rotate(-3deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+.visualFrame {
+  position: absolute;
+  width: min(52%, 380px);
+  aspect-ratio: 0.78;
+  border: 1px solid rgba(232, 232, 227, 0.2);
+  background: #151513;
+}
+
+.visualFrame:first-child {
+  z-index: 1;
+  top: 6%;
+  left: -9%;
+  transform: rotate(-8deg);
+}
+
+.visualFrame:nth-of-type(2) {
+  z-index: 2;
+  right: -7%;
+  bottom: 7%;
+  transform: rotate(7deg);
+}
+
+.visualTop {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.interface {
+  position: absolute;
+  z-index: 4;
+  top: 18%;
+  right: -8%;
+  width: 82%;
+  height: 55%;
+  overflow: hidden;
+  border: 1px solid currentColor;
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(9px);
+  box-shadow: 0 38px 100px rgba(0, 0, 0, 0.25);
+}
+
+.interfaceHeader {
+  height: 12%;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 15px;
+  border-bottom: 1px solid currentColor;
+}
+
+.interfaceHeader i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.interfaceBody {
+  height: 88%;
+  display: grid;
+  grid-template-columns: 23% 1fr;
+}
+
+.interfaceBody aside {
+  padding: 18px 12px;
+  border-right: 1px solid currentColor;
+}
+
+.interfaceBody aside span {
+  display: block;
+  width: 100%;
+  height: 6px;
+  margin-bottom: 15px;
+  background: currentColor;
+  opacity: 0.42;
+}
+
+.interfaceBody > div {
+  padding: clamp(18px, 2vw, 30px);
+}
+
+.interfaceTitle span {
+  display: block;
+  width: 68%;
+  height: 9px;
+  margin-bottom: 11px;
+  background: currentColor;
+}
+
+.interfaceTitle span:last-child {
+  width: 39%;
+  opacity: 0.4;
+}
+
+.interfaceGrid {
+  height: 69%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin-top: 11%;
+}
+
+.interfaceGrid i {
+  border: 1px solid currentColor;
+  opacity: 0.6;
+}
+
+.visualLetter {
+  position: absolute;
+  z-index: 1;
+  bottom: -0.16em;
+  left: -0.08em;
+  font-size: clamp(20rem, 34vw, 42rem);
+  font-weight: 800;
+  line-height: 0.7;
+  letter-spacing: -0.12em;
+  opacity: 0.13;
+}
+
+.visualBottom {
+  position: absolute;
+  z-index: 5;
+  right: clamp(24px, 3vw, 44px);
+  bottom: clamp(24px, 3vw, 44px);
+  left: clamp(24px, 3vw, 44px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.visualBottom strong {
+  max-width: 76%;
+  font-size: clamp(2.8rem, 5.5vw, 6.5rem);
+  font-weight: 500;
+  line-height: 0.82;
+  letter-spacing: -0.07em;
+}
+
+.visualBottom span {
+  max-width: 120px;
+  font-size: 8px;
+  font-weight: 800;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+/* Product-specific art direction */
+
+.productVisual.ams {
+  background: #b4161e;
+  color: #ffffff;
+}
+
+.productVisual.bazaar {
+  background: #d6cc98;
+  color: #173d33;
+}
+
+.productVisual.bazaar .interface {
+  top: 13%;
+  right: 10%;
+  width: 72%;
+  height: 61%;
+  transform: rotate(3deg);
+}
+
+.productVisual.audit {
+  background: #173d33;
+  color: #e8e8e3;
+}
+
+.productVisual.audit .interface {
+  top: 24%;
+  right: -3%;
+  width: 88%;
+  height: 50%;
+  transform: rotate(-2deg);
+}
+
+.productVisual.pos {
+  background: #d4ccc0;
+  color: #080807;
+}
+
+.productVisual.pos .interface {
+  top: 14%;
+  right: 8%;
+  width: 72%;
+  height: 64%;
+}
+
+.productVisual.pos .interfaceGrid i:first-child {
+  background: #b4161e;
+}
+
+.productVisual.sofi {
+  background: #8b1511;
+  color: #ffffff;
+}
+
+.productVisual.sofi .interface {
+  top: 15%;
+  right: 13%;
+  width: 65%;
+  height: 62%;
+  border-radius: 45% 45% 0 0;
+}
+
+.productVisual.genie {
+  background: #ded2bd;
+  color: #173d33;
+}
+
+.productVisual.genie .interface {
+  top: 21%;
+  right: -4%;
+  width: 84%;
+  height: 52%;
+  transform: rotate(2deg);
+}
+
+.visualProgress {
+  position: absolute;
+  z-index: 8;
+  right: clamp(25px, 4vw, 62px);
+  bottom: 28px;
+  left: clamp(25px, 4vw, 62px);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 15px;
+  font-size: 8px;
+  font-weight: 800;
+}
+
+.visualProgress > i {
+  height: 1px;
+  overflow: hidden;
+  background: rgba(232, 232, 227, 0.2);
+}
+
+.visualProgress b {
+  display: block;
+  height: 100%;
+  background: #e8e8e3;
+  transition: width 500ms
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Product story column */
+
+.stories {
+  padding-inline: clamp(30px, 5vw, 85px);
+}
+
+.story {
+  min-height: 108vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(100px, 12vw, 180px) 0;
+  border-bottom: 1px solid rgba(232, 232, 227, 0.18);
+}
+
+.storyMeta {
+  display: flex;
+  gap: 18px;
+  color: rgba(232, 232, 227, 0.5);
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.storyMeta span:first-child {
+  color: #d3242e;
+}
+
+.story h3 {
+  margin: 55px 0 30px;
+  font-size: clamp(4rem, 7vw, 8.5rem);
+  font-weight: 500;
+  line-height: 0.84;
+  letter-spacing: -0.075em;
+}
+
+.story > p {
+  max-width: 580px;
+  color: rgba(232, 232, 227, 0.6);
+  font-size: clamp(1rem, 1.2vw, 1.16rem);
+  line-height: 1.75;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 30px;
+}
+
+.tags span {
+  padding: 9px 13px;
+  border: 1px solid rgba(232, 232, 227, 0.22);
+  border-radius: 999px;
+  color: rgba(232, 232, 227, 0.7);
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.outcome {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 30px;
+  align-items: end;
+  margin-top: 70px;
+  padding-top: 23px;
+  border-top: 1px solid rgba(232, 232, 227, 0.18);
+}
+
+.outcome > span {
+  color: rgba(232, 232, 227, 0.4);
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.outcome strong {
+  max-width: 500px;
+  font-size: clamp(1.8rem, 3vw, 3.8rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.story > a {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 55px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e8e8e3;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 1000px) {
+  .intro h2 span:nth-child(2),
+  .intro h2 em {
+    margin-left: 0;
+  }
+
+  .productExperience {
+    grid-template-columns: 1fr;
+  }
+
+  .visualColumn {
+    z-index: 10;
+    border-right: 0;
+  }
+
+  .stickyVisual {
+    min-height: 78vh;
+    background: #080807;
+  }
+
+  .productVisual {
+    width: min(86%, 600px);
+    max-height: 66vh;
+  }
+
+  .story {
+    min-height: 90vh;
+  }
+}
+
+@media (max-width: 600px) {
+  .introMeta {
+    grid-template-columns: 1fr auto;
+  }
+
+  .introMeta span:nth-child(2) {
+    display: none;
+  }
+
+  .intro h2 {
+    font-size: clamp(4.2rem, 19vw, 6.4rem);
+  }
+
+  .stickyVisual {
+    min-height: 68vh;
+    padding: 55px 22px 80px;
+  }
+
+  .productVisual {
+    width: 92%;
+  }
+
+  .visualFrame {
+    display: none;
+  }
+
+  .visualBottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .visualBottom strong {
+    max-width: 100%;
+  }
+
+  .visualBottom span {
+    text-align: left;
+  }
+
+  .stories {
+    padding-inline: 22px;
+  }
+
+  .story h3 {
+    font-size: clamp(3.7rem, 17vw, 5.6rem);
+  }
+
+  .outcome {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .headingLine,
+  .story,
+  .visualFrame,
+  .productVisual {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

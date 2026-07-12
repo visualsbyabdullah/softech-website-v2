@@ -1,0 +1,840 @@
+﻿.section {
+  position: relative;
+  background: #f2efe9;
+  color: #12110f;
+}
+
+.intro {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: clamp(110px, 13vw, 190px) 0;
+  background: #f2efe9;
+  color: #12110f;
+}
+
+.introMeta {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 24px;
+  padding-bottom: 26px;
+  border-bottom: 1px solid rgba(18, 17, 15, 0.16);
+  color: #736d65;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.introMeta span:nth-child(2) {
+  text-align: center;
+}
+
+.introTitle {
+  max-width: 1280px;
+  margin: clamp(64px, 8vw, 110px) 0 46px;
+  font-size: clamp(4rem, 8.5vw, 10rem);
+  font-weight: 500;
+  line-height: 0.94;
+  letter-spacing: -0.075em;
+}
+
+.introTitle span {
+  display: block;
+  padding-bottom: 0.08em;
+}
+
+.introTitle span:nth-child(2) {
+  margin-left: 13%;
+}
+
+.introTitle span:last-child {
+  margin-left: 25%;
+  color: #b4161e;
+}
+
+.intro > div > p {
+  max-width: 520px;
+  margin-left: auto;
+  color: #736d65;
+  font-size: clamp(1rem, 1.25vw, 1.18rem);
+  line-height: 1.75;
+}
+
+.chapter {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.chapterInner {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(340px, 0.82fr) minmax(500px, 1.18fr);
+  gap: clamp(60px, 8vw, 140px);
+  align-items: center;
+  padding-top: clamp(90px, 9vw, 140px);
+  padding-bottom: clamp(90px, 9vw, 140px);
+}
+
+.chapterCopy {
+  position: relative;
+  z-index: 3;
+}
+
+.chapterMeta {
+  display: flex;
+  gap: 22px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid currentColor;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.chapterMeta span:first-child {
+  color: #e21e2a;
+}
+
+.chapterCopy h3 {
+  max-width: 760px;
+  margin: clamp(44px, 6vw, 78px) 0 28px;
+  font-size: clamp(3.4rem, 6.5vw, 7.6rem);
+  font-weight: 500;
+  line-height: 0.91;
+  letter-spacing: -0.068em;
+}
+
+.chapterCopy > p {
+  max-width: 540px;
+  font-size: clamp(1rem, 1.2vw, 1.16rem);
+  line-height: 1.75;
+  opacity: 0.65;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 34px;
+}
+
+.tags span {
+  padding: 8px 12px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+.visualStage {
+  position: relative;
+  min-width: 0;
+}
+
+.visualIndex {
+  position: absolute;
+  top: 22px;
+  left: 24px;
+  z-index: 5;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+}
+
+/* Chapter backgrounds and alternating layouts */
+
+.chapter1 {
+  background: #11110f;
+  color: #f2efe9;
+}
+
+.chapter2 {
+  background: #ded8ce;
+  color: #12110f;
+}
+
+.chapter2 .chapterInner {
+  grid-template-columns: minmax(500px, 1.18fr) minmax(340px, 0.82fr);
+}
+
+.chapter2 .visualStage {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.chapter2 .chapterCopy {
+  grid-column: 2;
+}
+
+.chapter3 {
+  background: #b4161e;
+  color: #ffffff;
+}
+
+.chapter3 .chapterInner {
+  grid-template-columns: minmax(340px, 0.72fr) minmax(540px, 1.28fr);
+}
+
+.chapter3 .chapterMeta span:first-child {
+  color: #ffffff;
+}
+
+.chapter4 {
+  background: #f2efe9;
+  color: #12110f;
+}
+
+.chapter4 .chapterInner {
+  grid-template-columns: minmax(540px, 1.25fr) minmax(340px, 0.75fr);
+}
+
+.chapter4 .visualStage {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.chapter4 .chapterCopy {
+  grid-column: 2;
+}
+
+.chapter5 {
+  background: #191816;
+  color: #f2efe9;
+}
+
+.chapter5 .chapterInner {
+  grid-template-columns: minmax(330px, 0.72fr) minmax(560px, 1.28fr);
+}
+
+.chapter6 {
+  background: #e7e1d7;
+  color: #12110f;
+}
+
+.chapter6 .chapterInner {
+  grid-template-columns: minmax(380px, 0.82fr) minmax(540px, 1.18fr);
+}
+
+/* 01 — Product Engineering */
+
+.engineeringVisual {
+  position: relative;
+  min-height: min(72vh, 720px);
+}
+
+.engineeringLayer {
+  position: absolute;
+  width: 72%;
+  height: 58%;
+  padding: 24px;
+  border: 1px solid rgba(242, 239, 233, 0.32);
+  background: rgba(242, 239, 233, 0.055);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 42px 100px rgba(0, 0, 0, 0.22);
+}
+
+.engineeringLayer > span {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.engineeringLayer[data-layer="one"] {
+  top: 5%;
+  left: 0;
+}
+
+.engineeringLayer[data-layer="two"] {
+  top: 22%;
+  left: 14%;
+  border-color: rgba(180, 22, 30, 0.8);
+}
+
+.engineeringLayer[data-layer="three"] {
+  top: 39%;
+  left: 28%;
+  background: #b4161e;
+  color: #ffffff;
+}
+
+.engineeringLayer[data-layer="one"] i {
+  display: block;
+  width: 75%;
+  height: 1px;
+  margin-top: 18%;
+  background: currentColor;
+  opacity: 0.35;
+}
+
+.engineeringLayer[data-layer="one"] i:nth-child(3) {
+  width: 55%;
+  margin-top: 10%;
+}
+
+.engineeringLayer[data-layer="one"] i:nth-child(4) {
+  width: 36%;
+  margin-top: 10%;
+}
+
+.miniGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  height: 65%;
+  margin-top: 9%;
+}
+
+.miniGrid i {
+  border: 1px solid rgba(242, 239, 233, 0.28);
+}
+
+.engineeringLayer strong {
+  position: absolute;
+  right: 24px;
+  bottom: 18px;
+  font-size: clamp(3.5rem, 7vw, 7rem);
+  font-weight: 500;
+  letter-spacing: -0.07em;
+}
+
+/* 02 — Automation */
+
+.automationVisual {
+  position: relative;
+  min-height: min(70vh, 680px);
+  padding: clamp(34px, 5vw, 70px);
+  border: 1px solid rgba(18, 17, 15, 0.18);
+  background: #f2efe9;
+}
+
+.workflow {
+  min-height: 440px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 28px;
+}
+
+.workflowStep {
+  position: relative;
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  align-items: center;
+  gap: 22px;
+}
+
+.workflowStep > span {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #12110f;
+  color: #f2efe9;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.workflowStep strong {
+  font-size: clamp(1.35rem, 2.2vw, 2.3rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+}
+
+.workflowStep > i {
+  position: absolute;
+  top: 55px;
+  left: 27px;
+  width: 1px;
+  height: 30px;
+  background: #b4161e;
+}
+
+.workflowStatus {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 18px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(18, 17, 15, 0.2);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.workflowStatus i {
+  height: 1px;
+  background: #b4161e;
+}
+
+.workflowStatus strong {
+  color: #b4161e;
+  font-size: 1.4rem;
+}
+
+/* 03 — AI */
+
+.intelligenceVisual {
+  position: relative;
+  min-height: min(72vh, 720px);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.dataGrid {
+  position: absolute;
+  inset: 12%;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 10px;
+}
+
+.dataGrid i {
+  aspect-ratio: 1;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.dataGrid i:nth-child(3n) {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.dataGrid i:nth-child(7n) {
+  border-radius: 50%;
+  background: #12110f;
+}
+
+.scanner {
+  position: absolute;
+  top: 50%;
+  left: 7%;
+  width: 86%;
+  height: 2px;
+  background: #ffffff;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.9);
+}
+
+.signal {
+  position: absolute;
+  right: 24px;
+  bottom: 22px;
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.signal span {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.signal strong {
+  font-size: clamp(2.5rem, 4vw, 4.6rem);
+  font-weight: 500;
+  letter-spacing: -0.06em;
+}
+
+/* 04 — Commerce */
+
+.commerceVisual {
+  position: relative;
+  min-height: min(72vh, 720px);
+  overflow: hidden;
+  background: #12110f;
+  color: #f2efe9;
+}
+
+.commerceTrack {
+  position: absolute;
+  top: 18%;
+  left: -8%;
+  display: flex;
+  gap: 18px;
+  width: 118%;
+}
+
+.commerceCard {
+  position: relative;
+  min-width: 42%;
+  aspect-ratio: 0.78;
+  padding: 22px;
+  border: 1px solid rgba(242, 239, 233, 0.25);
+  background: #22211e;
+}
+
+.commerceCard:nth-child(2) {
+  transform: translateY(48px);
+  background: #b4161e;
+}
+
+.commerceCard > span {
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.commerceCard > strong {
+  position: absolute;
+  bottom: 24px;
+  left: 22px;
+  font-size: clamp(1.6rem, 3vw, 3.2rem);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+}
+
+.commerceCard > i {
+  position: absolute;
+  top: 28%;
+  left: 18%;
+  width: 64%;
+  aspect-ratio: 1;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  opacity: 0.38;
+}
+
+.orderStatus {
+  position: absolute;
+  right: 22px;
+  bottom: 20px;
+  left: 22px;
+  display: grid;
+  grid-template-columns: 10px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.orderStatus i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #47bd84;
+  box-shadow: 0 0 14px #47bd84;
+}
+
+/* 05 — Infrastructure */
+
+.infrastructureVisual {
+  position: relative;
+  min-height: min(72vh, 720px);
+}
+
+.infrastructureStack {
+  position: absolute;
+  inset: 10% 4%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.infrastructureLayer {
+  position: relative;
+  min-height: 112px;
+  display: grid;
+  grid-template-columns: 70px 1fr auto;
+  align-items: center;
+  padding: 0 28px;
+  border: 1px solid rgba(242, 239, 233, 0.23);
+  background: #23221f;
+  box-shadow: 0 24px 55px rgba(0, 0, 0, 0.25);
+}
+
+.infrastructureLayer + .infrastructureLayer {
+  margin-top: -18px;
+  margin-left: 5%;
+}
+
+.infrastructureLayer:nth-child(3) {
+  margin-left: 10%;
+}
+
+.infrastructureLayer:nth-child(4) {
+  margin-left: 15%;
+  border-color: #b4161e;
+  background: #b4161e;
+}
+
+.infrastructureLayer span {
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.infrastructureLayer strong {
+  font-size: clamp(1.4rem, 2.5vw, 2.7rem);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+}
+
+.infrastructureLayer i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #47bd84;
+}
+
+.systemStatus {
+  position: absolute;
+  right: 16px;
+  bottom: 0;
+  display: flex;
+  gap: 14px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.systemStatus strong {
+  color: #47bd84;
+}
+
+/* 06 — Experience */
+
+.experienceVisual {
+  position: relative;
+  min-height: min(72vh, 720px);
+}
+
+.wireframe,
+.polishedInterface {
+  position: absolute;
+  inset: 7%;
+  border: 1px solid rgba(18, 17, 15, 0.35);
+}
+
+.wireframe {
+  transform: translate(-7%, 6%) rotate(-4deg);
+}
+
+.wireframeNav,
+.interfaceNav {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 22px;
+  border-bottom: 1px solid currentColor;
+}
+
+.wireframeNav i {
+  width: 9px;
+  height: 9px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+}
+
+.wireframeBody {
+  height: calc(100% - 72px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  padding: 42px;
+}
+
+.wireframeCopy span {
+  display: block;
+  height: 12px;
+  margin-bottom: 20px;
+  border: 1px solid currentColor;
+}
+
+.wireframeCopy span:first-child {
+  width: 84%;
+  height: 60px;
+}
+
+.wireframeCopy span:last-child {
+  width: 56%;
+}
+
+.wireframeMedia {
+  border: 1px solid currentColor;
+}
+
+.polishedInterface {
+  overflow: hidden;
+  background: #12110f;
+  color: #f2efe9;
+  box-shadow: 0 45px 120px rgba(18, 17, 15, 0.22);
+}
+
+.interfaceNav {
+  justify-content: space-between;
+}
+
+.interfaceNav strong {
+  font-size: 13px;
+  letter-spacing: 0.12em;
+}
+
+.interfaceNav span {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  opacity: 0.6;
+}
+
+.interfaceBody {
+  height: calc(100% - 72px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(34px, 6vw, 82px);
+}
+
+.interfaceBody small {
+  color: #e21e2a;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.interfaceBody > strong {
+  max-width: 520px;
+  margin-top: 22px;
+  font-size: clamp(3rem, 6vw, 6.5rem);
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: -0.07em;
+}
+
+.interfaceBody button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 46px;
+  padding: 14px 20px;
+  border: 0;
+  background: #b4161e;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+/* Responsive */
+
+@media (max-width: 950px) {
+  .introTitle span:nth-child(2),
+  .introTitle span:last-child {
+    margin-left: 0;
+  }
+
+  .chapterInner,
+  .chapter2 .chapterInner,
+  .chapter3 .chapterInner,
+  .chapter4 .chapterInner,
+  .chapter5 .chapterInner,
+  .chapter6 .chapterInner {
+    grid-template-columns: 1fr;
+    gap: 70px;
+  }
+
+  .chapter2 .visualStage,
+  .chapter4 .visualStage {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .chapter2 .chapterCopy,
+  .chapter4 .chapterCopy {
+    grid-column: 1;
+  }
+
+  .visualStage {
+    min-height: 650px;
+  }
+}
+
+@media (max-width: 600px) {
+  .introMeta {
+    grid-template-columns: 1fr auto;
+  }
+
+  .introMeta span:nth-child(2) {
+    display: none;
+  }
+
+  .introTitle {
+    font-size: clamp(3.7rem, 17vw, 5.5rem);
+  }
+
+  .chapterCopy h3 {
+    font-size: clamp(3.2rem, 14vw, 5rem);
+  }
+
+  .visualStage {
+    min-height: 520px;
+  }
+
+  .engineeringVisual,
+  .automationVisual,
+  .intelligenceVisual,
+  .commerceVisual,
+  .infrastructureVisual,
+  .experienceVisual {
+    min-height: 520px;
+  }
+
+  .engineeringLayer {
+    width: 82%;
+    height: 52%;
+  }
+
+  .workflow {
+    min-height: 350px;
+  }
+
+  .commerceCard {
+    min-width: 62%;
+  }
+
+  .infrastructureLayer {
+    grid-template-columns: 44px 1fr auto;
+    min-height: 90px;
+    padding: 0 16px;
+  }
+
+  .infrastructureLayer strong {
+    font-size: 1.25rem;
+  }
+
+  .wireframeBody {
+    padding: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .introTitle span,
+  .chapterCopy,
+  .section [data-layer],
+  .section [data-node],
+  .section [data-connector],
+  .section [data-cell],
+  .section [data-commerce-card],
+  .section [data-infrastructure-layer],
+  .section [data-wireframe],
+  .section [data-interface] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+

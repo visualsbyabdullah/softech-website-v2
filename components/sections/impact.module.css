@@ -1,0 +1,247 @@
+﻿.section {
+  position: relative;
+  overflow: hidden;
+  background: #f2efe9;
+  color: #12110f;
+}
+
+.header {
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  padding: clamp(100px, 12vw, 180px) 0;
+  background: #11110f;
+  color: #f2efe9;
+}
+
+.headerMeta {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(242, 239, 233, 0.2);
+  color: rgba(242, 239, 233, 0.55);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.headerMeta span:nth-child(2) {
+  text-align: center;
+}
+
+.statement {
+  position: relative;
+  display: grid;
+  grid-template-columns: 0.65fr 1.8fr auto;
+  gap: clamp(30px, 5vw, 90px);
+  align-items: end;
+  margin-top: clamp(90px, 11vw, 160px);
+}
+
+.statement > p {
+  max-width: 300px;
+  color: rgba(242, 239, 233, 0.58);
+  font-size: clamp(0.95rem, 1.1vw, 1.08rem);
+  line-height: 1.7;
+}
+
+.statement h2 {
+  margin: 0;
+  font-size: clamp(4.7rem, 10vw, 11.5rem);
+  font-weight: 500;
+  line-height: 0.87;
+  letter-spacing: -0.078em;
+}
+
+.statement svg {
+  margin-bottom: 12px;
+  color: #e21e2a;
+}
+
+.marquee {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(58px, 7vw, 105px) 0;
+  background: #b4161e;
+  color: #ffffff;
+}
+
+.marqueeLine {
+  width: max-content;
+  display: flex;
+  align-items: center;
+  gap: clamp(28px, 4vw, 70px);
+  white-space: nowrap;
+  font-size: clamp(3.8rem, 8vw, 9rem);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.065em;
+}
+
+.marqueeLine + .marqueeLine {
+  margin-top: 18px;
+  margin-left: 10vw;
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.marqueeLine i {
+  width: clamp(14px, 2vw, 28px);
+  height: clamp(14px, 2vw, 28px);
+  flex: 0 0 auto;
+  border: 2px solid currentColor;
+  transform: rotate(45deg);
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding-top: clamp(100px, 12vw, 180px);
+  padding-bottom: clamp(110px, 14vw, 210px);
+}
+
+.metric {
+  position: relative;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  padding: 28px;
+  border-top: 1px solid rgba(18, 17, 15, 0.2);
+  border-right: 1px solid rgba(18, 17, 15, 0.2);
+}
+
+.metric:first-child {
+  border-left: 1px solid rgba(18, 17, 15, 0.2);
+}
+
+.metric:nth-child(2) {
+  margin-top: 90px;
+}
+
+.metric:nth-child(3) {
+  margin-top: 180px;
+}
+
+.metric:nth-child(4) {
+  margin-top: 270px;
+  background: #11110f;
+  color: #f2efe9;
+}
+
+.metricTop {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+
+.number {
+  margin-top: auto;
+  color: #b4161e;
+  font-size: clamp(6rem, 10vw, 12rem);
+  font-weight: 500;
+  line-height: 0.74;
+  letter-spacing: -0.09em;
+}
+
+.metric:nth-child(4) .number {
+  color: #ffffff;
+}
+
+.metric h3 {
+  max-width: 260px;
+  margin: 40px 0 14px;
+  font-size: clamp(1.45rem, 2.1vw, 2.4rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+.metric p {
+  max-width: 250px;
+  margin: 0;
+  color: #736d65;
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.metric:nth-child(4) p {
+  color: rgba(242, 239, 233, 0.58);
+}
+
+@media (max-width: 1000px) {
+  .statement {
+    grid-template-columns: 1fr;
+  }
+
+  .statement h2 {
+    grid-row: 1;
+  }
+
+  .statement svg {
+    display: none;
+  }
+
+  .metrics {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .metric:nth-child(2),
+  .metric:nth-child(3),
+  .metric:nth-child(4) {
+    margin-top: 0;
+  }
+
+  .metric:nth-child(3) {
+    border-left: 1px solid rgba(18, 17, 15, 0.2);
+  }
+
+  .metric {
+    min-height: 430px;
+  }
+}
+
+@media (max-width: 600px) {
+  .headerMeta {
+    grid-template-columns: 1fr auto;
+  }
+
+  .headerMeta span:nth-child(2) {
+    display: none;
+  }
+
+  .statement h2 {
+    font-size: clamp(4.3rem, 19vw, 6.6rem);
+  }
+
+  .marqueeLine {
+    font-size: clamp(3.4rem, 16vw, 5.5rem);
+  }
+
+  .metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .metric {
+    min-height: 390px;
+    border-left: 1px solid rgba(18, 17, 15, 0.2);
+  }
+
+  .number {
+    font-size: 8rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marqueeLine,
+  .metric,
+  .number {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
