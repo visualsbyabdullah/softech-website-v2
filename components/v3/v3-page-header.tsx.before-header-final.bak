@@ -1,0 +1,154 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Menu, Moon, Sun, X } from "lucide-react";
+import styles from "./v3-page-header.module.css";
+
+const navigation = [
+  { label: "Home", href: "/v3" },
+  { label: "About Us", href: "/v3/about" },
+  { label: "Services", href: "/v3/services" },
+  { label: "Process", href: "/v3/process" },
+  { label: "Products", href: "/v3/products" },
+] as const;
+
+export function V3PageHeader() {
+  const pathname = usePathname();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
+
+  useEffect(() => {
+    const savedTheme = window.localStorage.getItem("softech-v3-theme");
+    const prefersLight = window.matchMedia(
+      "(prefers-color-scheme: light)"
+    ).matches;
+
+    const initialTheme =
+      savedTheme === "light" || savedTheme === "dark"
+        ? savedTheme
+        : prefersLight
+          ? "light"
+          : "dark";
+
+    setTheme(initialTheme);
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.dataset.v3Theme = theme;
+    window.localStorage.setItem("softech-v3-theme", theme);
+  }, [theme]);
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
+  return (
+    <>
+      <header className={styles.header}>
+        <Link href="/v3" className={styles.brand}>
+          <span className={styles.brandMark}>S</span>
+
+          <span className={styles.brandText}>
+            <strong>SOFTECH</strong>
+            <small>Business Services</small>
+          </span>
+        </Link>
+
+        <nav className={styles.navigation} aria-label="Primary navigation">
+          {navigation.map((item) => {
+            const active = pathname === item.href;
+
+            return (
+              <Link
+                href={item.href}
+                key={item.href}
+                className={active ? styles.active : ""}
+                aria-current={active ? "page" : undefined}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
+        </nav>
+
+        <div className={styles.actions}>
+          <button
+            type="button"
+            className={styles.themeButton}
+            onClick={() =>
+              setTheme((current) =>
+                current === "dark" ? "light" : "dark"
+              )
+            }
+            aria-label={`Switch to ${
+              theme === "dark" ? "light" : "dark"
+            } theme`}
+          >
+            {theme === "dark" ? (
+              <Sun size={17} strokeWidth={1.5} />
+            ) : (
+              <Moon size={17} strokeWidth={1.5} />
+            )}
+          </button>
+
+          <button
+            type="button"
+            className={styles.menuButton}
+            onClick={() => setMenuOpen(true)}
+            aria-expanded={menuOpen}
+            aria-controls="v3-navigation-menu"
+          >
+            <Menu size={18} strokeWidth={1.5} />
+            <span>Menu</span>
+          </button>
+        </div>
+      </header>
+
+      <div
+        id="v3-navigation-menu"
+        className={`${styles.menuOverlay} ${
+          menuOpen ? styles.menuOpen : ""
+        }`}
+        aria-hidden={!menuOpen}
+      >
+        <button
+          type="button"
+          className={styles.menuClose}
+          onClick={() => setMenuOpen(false)}
+          aria-label="Close navigation"
+        >
+          <X size={24} strokeWidth={1.4} />
+        </button>
+
+        <span className={styles.menuLabel}>
+          Navigation / Softech
+        </span>
+
+        <nav aria-label="Menu navigation">
+          {navigation.map((item, index) => (
+            <Link
+              href={item.href}
+              key={item.href}
+              onClick={() => setMenuOpen(false)}
+            >
+              <span>0{index + 1}</span>
+              <strong>{item.label}</strong>
+              <i>↗</i>
+            </Link>
+          ))}
+        </nav>
+
+        <div className={styles.menuFooter}>
+          <span>Pakistan / United Kingdom / Global</span>
+          <span>Engineering the digital edge</span>
+        </div>
+      </div>
+    </>
+  );
+}

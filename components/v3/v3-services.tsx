@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useLayoutEffect, useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
@@ -131,6 +131,43 @@ export function V3Services() {
     return () => context.revert();
   }, []);
 
+  useLayoutEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const topLine = section.querySelector<HTMLElement>(
+      `.${styles.tickerForward}`
+    );
+
+    const bottomLine = section.querySelector<HTMLElement>(
+      `.${styles.tickerReverse}`
+    );
+
+    if (!topLine || !bottomLine) return;
+
+    const tickerLoopTweens = gsap.context(() => {
+      gsap.set(topLine, { xPercent: 0 });
+      gsap.set(bottomLine, { xPercent: -50 });
+
+      gsap.to(topLine, {
+        xPercent: -50,
+        duration: 22,
+        ease: "none",
+        repeat: -1,
+        overwrite: true,
+      });
+
+      gsap.to(bottomLine, {
+        xPercent: 0,
+        duration: 25,
+        ease: "none",
+        repeat: -1,
+        overwrite: true,
+      });
+    }, section);
+
+    return () => tickerLoopTweens.revert();
+  }, []);
   const selected = services[activeService];
 
   return (
@@ -141,26 +178,39 @@ export function V3Services() {
     >
       <div className={styles.ticker} aria-hidden="true">
         <div className={styles.tickerLine}>
-          <span>Product Engineering</span>
-          <i />
-          <span>Business Automation</span>
-          <i />
-          <span>Artificial Intelligence</span>
+          <div className={`${styles.marqueeTrack} ${styles.marqueeLeft}`}>
+            {[0, 1].map((copy) => (
+              <div className={styles.marqueeGroup} key={copy}>
+                <span>Product Engineering</span>
+                <i />
+                <span>Business Automation</span>
+                <i />
+                <span>Artificial Intelligence</span>
+                <i />
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className={styles.tickerLine}>
-          <span>Digital Commerce</span>
-          <i />
-          <span>Cloud Infrastructure</span>
-          <i />
-          <span>Experience Design</span>
+          <div className={`${styles.marqueeTrack} ${styles.marqueeRight}`}>
+            {[0, 1].map((copy) => (
+              <div className={styles.marqueeGroup} key={copy}>
+                <span>Digital Commerce</span>
+                <i />
+                <span>Cloud Infrastructure</span>
+                <i />
+                <span>Experience Design</span>
+                <i />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-
       <div className={styles.content}>
         <div className={styles.contentMeta}>
           <span>Capabilities</span>
-          <span>One team · Six disciplines</span>
+          <span>One team · six disciplines</span>
           <span>01—06</span>
         </div>
 

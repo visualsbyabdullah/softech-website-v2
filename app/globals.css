@@ -1,4 +1,4 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
 :root {
   --canvas: #f2efe9;
@@ -472,4 +472,15 @@ a {
   .site-brand__copy {
     display: none;
   }
+}
+/* V3 unified light theme */
+html[data-v3-theme="light"] {
+  background: #f2efe9;
+  filter: invert(1) hue-rotate(180deg);
+}
+
+html[data-v3-theme="light"] img,
+html[data-v3-theme="light"] video,
+html[data-v3-theme="light"] picture {
+  filter: invert(1) hue-rotate(180deg);
 }

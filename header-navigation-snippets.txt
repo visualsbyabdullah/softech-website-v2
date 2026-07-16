@@ -1,0 +1,70 @@
+﻿==========================================================================================
+FILE: .\components\v3\softech-v3.tsx
+==========================================================================================
+
+NAV BLOCK 1
+--------------------------------------------------
+<nav className={styles.navigation}>
+          <a href="#v3-products">Products</a>
+          <a href="#v3-services">Services</a>
+          <a href="#v3-process">Process</a>
+          <a href="#v3-contact">Contact</a>
+        </nav>
+
+NAV BLOCK 2
+--------------------------------------------------
+<nav>
+          {["Products", "Services", "Process", "Company", "Contact"].map(
+            (item, index) => (
+              <a
+                href={`#v3-${item.toLowerCase()}`}
+                key={item}
+                onClick={() => setMenuOpen(false)}
+              >
+                <span>0{index + 1}</span>
+                {item}
+                <ArrowUpRight size={24} strokeWidth={1.3} />
+              </a>
+            )
+          )}
+        </nav>
+
+==========================================================================================
+FILE: .\components\v3\v3-page-header.tsx
+==========================================================================================
+
+NAV BLOCK 1
+--------------------------------------------------
+<nav className={styles.navigation} aria-label="Primary navigation">
+          {navigation.map((item) => {
+            const active = pathname === item.href;
+
+            return (
+              <Link
+                href={item.href}
+                key={item.href}
+                className={active ? styles.active : ""}
+                aria-current={active ? "page" : undefined}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
+        </nav>
+
+NAV BLOCK 2
+--------------------------------------------------
+<nav aria-label="Menu navigation">
+          {navigation.map((item, index) => (
+            <Link
+              href={item.href}
+              key={item.href}
+              onClick={() => setMenuOpen(false)}
+            >
+              <span>0{index + 1}</span>
+              <strong>{item.label}</strong>
+              <i>â†—</i>
+            </Link>
+          ))}
+        </nav>
+

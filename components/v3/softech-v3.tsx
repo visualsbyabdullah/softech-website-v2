@@ -1,18 +1,20 @@
-﻿"use client";
+"use client";
 
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
-  ArrowDown,
   ArrowLeft,
   ArrowRight,
   ArrowUpRight,
   Menu,
+  Moon,
+  Sun,
   X,
 } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 import styles from "./softech-v3.module.css";
-import { V3Products } from "./v3-products";
+import { V3CinematicHero } from "./v3-cinematic-hero";
 
 const statistics = [
   {
@@ -35,10 +37,102 @@ const statistics = [
   },
 ];
 
+function CountUp({ value }: { value: string }) {
+  const elementRef = useRef<HTMLSpanElement>(null);
+  const target = Number.parseInt(value, 10) || 0;
+  const digits = value.length;
+
+  const [displayValue, setDisplayValue] = useState(
+    "0".padStart(digits, "0")
+  );
+
+  useEffect(() => {
+    const element = elementRef.current;
+    if (!element) return;
+
+    let frame = 0;
+    let started = false;
+
+    setDisplayValue("0".padStart(digits, "0"));
+
+    const animate = () => {
+      const startTime = performance.now();
+      const duration = 1200;
+
+      const tick = (currentTime: number) => {
+        const progress = Math.min(
+          (currentTime - startTime) / duration,
+          1
+        );
+
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(target * eased);
+
+        setDisplayValue(String(current).padStart(digits, "0"));
+
+        if (progress < 1) {
+          frame = requestAnimationFrame(tick);
+        }
+      };
+
+      frame = requestAnimationFrame(tick);
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !started) {
+          started = true;
+          animate();
+        }
+      },
+      { threshold: 0.4 }
+    );
+
+    observer.observe(element);
+
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+    };
+  }, [value, target, digits]);
+
+  return <span ref={elementRef}>{displayValue}</span>;
+}
+
 export function SoftechV3() {
   const rootRef = useRef<HTMLDivElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [lightMode, setLightMode] = useState(false);
   const [statistic, setStatistic] = useState(0);
+
+  useEffect(() => {
+    const savedTheme = window.localStorage.getItem("softech-v3-theme");
+    const useLightTheme = savedTheme === "light";
+
+    setLightMode(useLightTheme);
+    document.documentElement.setAttribute(
+      "data-v3-theme",
+      useLightTheme ? "light" : "dark"
+    );
+  }, []);
+
+  const toggleTheme = () => {
+    setLightMode((current) => {
+      const nextTheme = !current;
+
+      document.documentElement.setAttribute(
+        "data-v3-theme",
+        nextTheme ? "light" : "dark"
+      );
+
+      window.localStorage.setItem(
+        "softech-v3-theme",
+        nextTheme ? "light" : "dark"
+      );
+
+      return nextTheme;
+    });
+  };
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -113,17 +207,32 @@ export function SoftechV3() {
           scrub: 1.1,
         },
       });
+      const manifestoLines = gsap.utils.toArray<HTMLElement>(
+        `.${styles.manifestoLine}`
+      );
 
-      gsap.from(`.${styles.manifestoLine}`, {
-        opacity: 0.1,
-        stagger: 0.16,
-        scrollTrigger: {
-          trigger: `.${styles.manifesto}`,
-          start: "top 74%",
-          end: "center 42%",
-          scrub: 1,
-        },
+      manifestoLines.forEach((line) => {
+        gsap.fromTo(
+          line,
+          {
+            opacity: 0.1,
+          },
+          {
+            opacity: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: line,
+              start: "top 94%",
+              end: "top 48%",
+              scrub: true,
+              invalidateOnRefresh: true,
+            },
+          }
+        );
       });
+
+      ScrollTrigger.refresh();
+
 
       gsap.from(`.${styles.founderCard}`, {
         y: 110,
@@ -168,20 +277,15 @@ export function SoftechV3() {
         </a>
 
         <nav className={styles.navigation}>
-          <a href="#v3-products">Products</a>
-          <a href="#v3-services">Services</a>
-          <a href="#v3-process">Process</a>
-          <a href="#v3-contact">Contact</a>
+          <a href="/v3">Home</a>
+          <a href="/v3/about">About Us</a>
+          <a href="/v3/services">Services</a>
+          <a href="/v3/process">Process</a>
+          <a href="/v3/products">Products</a>
         </nav>
-
-        <button
-          type="button"
-          className={styles.menuButton}
-          onClick={() => setMenuOpen(true)}
-        >
-          <Menu size={18} strokeWidth={1.6} />
-          <span>Menu</span>
-        </button>
+        <a href="/v3/contact" className={styles.quoteButton}>
+          Get a Quote
+        </a>
       </header>
 
       <div
@@ -198,75 +302,39 @@ export function SoftechV3() {
           <X size={22} strokeWidth={1.5} />
         </button>
 
-        <span className={styles.menuLabel}>
-          Navigation / Softech
-        </span>
+        <span className={styles.menuLabel}>Navigation / Softech</span>
 
         <nav>
-          {["Products", "Services", "Process", "Company", "Contact"].map(
-            (item, index) => (
-              <a
-                href={`#v3-${item.toLowerCase()}`}
-                key={item}
-                onClick={() => setMenuOpen(false)}
-              >
-                <span>0{index + 1}</span>
-                {item}
-                <ArrowUpRight size={24} strokeWidth={1.3} />
-              </a>
-            )
-          )}
+          {[
+            { label: "Home", href: "/v3" },
+            { label: "About Us", href: "/v3/about" },
+            { label: "Services", href: "/v3/services" },
+            { label: "Process", href: "/v3/process" },
+            { label: "Products", href: "/v3/products" },
+            { label: "Contact", href: "/v3/contact" },
+          ].map((item, index) => (
+            <a
+              href={item.href}
+              key={item.href}
+              onClick={() => setMenuOpen(false)}
+            >
+              <span>0{index + 1}</span>
+              {item.label}
+              <ArrowUpRight size={24} strokeWidth={1.3} />
+            </a>
+          ))}
         </nav>
 
         <div className={styles.menuFooter}>
-          <span>Pakistan · United Kingdom · Global</span>
+          <span>Pakistan Â· United Kingdom Â· Global</span>
           <span>Engineering the digital edge</span>
         </div>
       </div>
 
       <main>
-        <section className={styles.hero}>
-          <div className={styles.heroMeta}>
-            <span>Independent digital engineering company</span>
-            <span>Pakistan · UK · Global</span>
-            <span>Est. for progress</span>
-          </div>
+        <V3CinematicHero />
 
-          <h1>
-            <span className={styles.heroLine}>
-              <span className={styles.heroWordOne}>Systems</span>
-            </span>
-
-            <span className={styles.heroLine}>
-              <span>built to move</span>
-            </span>
-
-            <span className={styles.heroLine}>
-              <span className={styles.heroWordTwo}>business.</span>
-            </span>
-          </h1>
-
-          <div className={styles.heroBottom}>
-            <p>
-              We transform operational complexity into digital
-              products, intelligent platforms and connected
-              experiences.
-            </p>
-
-            <a href="#v3-manifesto">
-              Discover Softech
-              <ArrowDown size={17} strokeWidth={1.6} />
-            </a>
-          </div>
-
-          <div className={styles.heroCoordinate}>
-            <span>33.6844° N</span>
-            <i />
-            <span>73.0479° E</span>
-          </div>
-        </section>
-
-        <section className={styles.statistics}>
+        <section id="v3-statistics" className={styles.statistics}>
           <div className={styles.statControls}>
             <button
               type="button"
@@ -292,7 +360,9 @@ export function SoftechV3() {
           </div>
 
           <div className={styles.statContent} key={statistic}>
-            <strong>{activeStatistic.value}</strong>
+            <strong>
+              <CountUp value={activeStatistic.value} />
+            </strong>
 
             <div>
               <h2>{activeStatistic.label}</h2>
@@ -301,10 +371,7 @@ export function SoftechV3() {
           </div>
         </section>
 
-        <section
-          id="v3-manifesto"
-          className={styles.manifesto}
-        >
+        <section id="v3-manifesto" className={styles.manifesto}>
           <div className={styles.manifestoLabel}>
             <span>Why Softech</span>
             <span>Technology with consequence</span>
@@ -319,43 +386,20 @@ export function SoftechV3() {
               systems as capable as the people
             </span>
 
-            <span className={styles.manifestoLine}>
-              running them.
-            </span>
-
-            <span className={styles.manifestoLine}>
-              The gap between ambition and
-            </span>
-
-            <span className={styles.manifestoLine}>
-              execution is where we work.
-            </span>
+            <span className={styles.manifestoLine}>running them.</span>
           </h2>
 
           <div className={styles.manifestoBottom}>
-            <div className={styles.founderCard}>
-              <span className={styles.founderImage}>
-                SFT
-              </span>
-
-              <div>
-                <strong>Softech Business Services</strong>
-                <span>Strategy · Products · Engineering</span>
-              </div>
-            </div>
 
             <p>
               We do not add technology for appearance. We uncover
-              operational friction, design the right system and
-              remain accountable until it works in the real world.
+              operational friction, design the right system and remain
+              accountable until it works in the real world.
             </p>
           </div>
         </section>
 
-        <section
-          id="v3-products"
-          className={styles.nextSection}
-        >
+        <section id="v3-products" className={styles.nextSection}>
           <span>Next / Products</span>
           <h2>We close the operational gap.</h2>
         </section>
@@ -363,4 +407,6 @@ export function SoftechV3() {
     </div>
   );
 }
+
+
 

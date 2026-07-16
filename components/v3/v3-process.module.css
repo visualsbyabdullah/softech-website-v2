@@ -1,0 +1,455 @@
+.process {
+  --process-black: #090909;
+  --process-ink: #f2efe9;
+  --process-muted: #898781;
+  --process-line: rgba(242, 239, 233, 0.14);
+  position: relative;
+  overflow: clip;
+  color: var(--process-ink);
+  background: var(--process-black);
+  border-top: 1px solid var(--process-line);
+}
+
+.topbar {
+  min-height: 72px;
+  padding: 0 4.5vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  align-items: center;
+  border-bottom: 1px solid var(--process-line);
+  color: #8f8d87;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.17em;
+}
+
+.topbar span:nth-child(2) {
+  justify-self: center;
+}
+
+.intro {
+  min-height: 88vh;
+  padding: 11vh 4.5vw 10vh;
+  display: grid;
+  grid-template-columns: 20% 1fr 25%;
+  align-items: end;
+  border-bottom: 1px solid var(--process-line);
+}
+
+.eyebrow {
+  align-self: end;
+  padding-bottom: 1rem;
+  color: #c51624;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+
+.intro h2 {
+  margin: 0;
+  max-width: 1050px;
+  font-size: clamp(4rem, 7.5vw, 9rem);
+  font-weight: 400;
+  line-height: 0.88;
+  letter-spacing: -0.075em;
+}
+
+.intro h2 em {
+  color: #c51624;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+}
+
+.intro p {
+  margin: 0 0 1rem 3vw;
+  max-width: 340px;
+  color: var(--process-muted);
+  font-size: clamp(1rem, 1.25vw, 1.3rem);
+  line-height: 1.55;
+}
+
+.processBody {
+  position: relative;
+  display: grid;
+  grid-template-columns: 31% 69%;
+}
+
+.progressColumn {
+  position: relative;
+  border-right: 1px solid var(--process-line);
+}
+
+.progressSticky {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  padding: 10vh 4.5vw 8vh;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto 1fr;
+  column-gap: 2rem;
+  align-content: start;
+}
+
+.progressLabel {
+  grid-column: 1 / -1;
+  margin-bottom: 5vh;
+  color: #7c7a75;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+
+.progressSticky > strong {
+  font-size: clamp(5rem, 8vw, 9rem);
+  font-weight: 400;
+  line-height: 0.75;
+  letter-spacing: -0.08em;
+}
+
+.rail {
+  position: relative;
+  width: 1px;
+  height: 30vh;
+  margin-left: auto;
+  overflow: hidden;
+  background: rgba(242, 239, 233, 0.14);
+}
+
+.railFill {
+  position: absolute;
+  inset: 0;
+  background: #c51624;
+  transform-origin: top;
+  transition: transform 650ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stageNavigation {
+  grid-column: 1 / -1;
+  align-self: end;
+  margin-top: 10vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.stageNavigation button {
+  width: 100%;
+  padding: 1.2rem 0;
+  display: grid;
+  grid-template-columns: 3.5rem 1fr;
+  align-items: center;
+  color: #66645f;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--process-line);
+  font: inherit;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-align: left;
+  cursor: pointer;
+  transition: color 300ms ease, padding-left 300ms ease;
+}
+
+.stageNavigation button:last-child {
+  border-bottom: 1px solid var(--process-line);
+}
+
+.stageNavigation button:hover,
+.stageNavigation .activeNav {
+  padding-left: 0.7rem;
+  color: var(--process-ink);
+}
+
+.stageNavigation .activeNav span {
+  color: #c51624;
+}
+
+.stageStack {
+  position: relative;
+}
+
+.stage {
+  position: relative;
+  min-height: 105vh;
+  padding: 11vh 6vw 9vh;
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  grid-template-rows: auto 1fr auto;
+  column-gap: 5vw;
+  overflow: hidden;
+  border-bottom: 1px solid var(--process-line);
+  opacity: 0.38;
+  transition: opacity 500ms ease, background-color 500ms ease;
+}
+
+.stage:nth-child(2) {
+  background: #0d1a15;
+}
+
+.stage:nth-child(3) {
+  background: #17130f;
+}
+
+.activeStage {
+  opacity: 1;
+}
+
+.stageMeta {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 1.3rem;
+  color: #8a8882;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.17em;
+}
+
+.stageMeta span:first-child {
+  color: #c51624;
+}
+
+.stageContent {
+  grid-column: 1 / -1;
+  align-self: center;
+  position: relative;
+  z-index: 2;
+}
+
+.stageContent h3 {
+  margin: 0;
+  max-width: 880px;
+  font-size: clamp(3.5rem, 6vw, 7.5rem);
+  font-weight: 400;
+  line-height: 0.91;
+  letter-spacing: -0.065em;
+}
+
+.stageContent > p {
+  margin: 3rem 0 0 auto;
+  max-width: 500px;
+  color: #9c9992;
+  font-size: clamp(1rem, 1.35vw, 1.35rem);
+  line-height: 1.65;
+}
+
+.stageContent ul {
+  margin: 4rem 0 0 auto;
+  padding: 0;
+  max-width: 500px;
+  list-style: none;
+}
+
+.stageContent li {
+  padding: 1rem 0;
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  align-items: center;
+  border-top: 1px solid var(--process-line);
+  color: #d7d3cb;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}
+
+.stageContent li:last-child {
+  border-bottom: 1px solid var(--process-line);
+}
+
+.stageContent li span {
+  width: 5px;
+  height: 5px;
+  background: #c51624;
+  border-radius: 50%;
+}
+
+.outcome {
+  grid-column: 1 / -1;
+  align-self: end;
+  position: relative;
+  z-index: 2;
+  padding-top: 1.4rem;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 1rem;
+  border-top: 1px solid var(--process-line);
+}
+
+.outcome > span {
+  color: #73716c;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.17em;
+}
+
+.outcome strong {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.watermark {
+  position: absolute;
+  right: -0.02em;
+  bottom: -0.23em;
+  z-index: 0;
+  color: transparent;
+  font-size: clamp(19rem, 34vw, 42rem);
+  font-weight: 600;
+  line-height: 0.8;
+  letter-spacing: -0.12em;
+  -webkit-text-stroke: 1px rgba(242, 239, 233, 0.055);
+  pointer-events: none;
+}
+
+.processFooter {
+  min-height: 190px;
+  padding: 3rem 4.5vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  color: #7f7d77;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.processFooter a {
+  padding-bottom: 0.7rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: var(--process-ink);
+  border-bottom: 1px solid #77746e;
+  text-decoration: none;
+  transition: color 250ms ease, border-color 250ms ease;
+}
+
+.processFooter a:hover {
+  color: #c51624;
+  border-color: #c51624;
+}
+
+@media (max-width: 900px) {
+  .topbar {
+    grid-template-columns: 1fr auto;
+  }
+
+  .topbar span:nth-child(2) {
+    display: none;
+  }
+
+  .intro {
+    min-height: 75vh;
+    grid-template-columns: 1fr;
+    align-content: end;
+    gap: 2rem;
+  }
+
+  .intro p {
+    margin-left: 0;
+  }
+
+  .processBody {
+    display: block;
+  }
+
+  .progressColumn {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-right: 0;
+  }
+
+  .progressSticky {
+    min-height: 0;
+    padding: 1.1rem 5vw;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    background: rgba(9, 9, 9, 0.94);
+    border-bottom: 1px solid var(--process-line);
+    backdrop-filter: blur(14px);
+  }
+
+  .progressLabel,
+  .rail,
+  .stageNavigation {
+    display: none;
+  }
+
+  .progressSticky > strong {
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  .progressSticky::after {
+    content: "CURRENT PHASE";
+    color: #8a8882;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.17em;
+  }
+
+  .stage {
+    min-height: 90vh;
+    padding: 11vh 5vw 7vh;
+  }
+}
+
+@media (max-width: 620px) {
+  .topbar {
+    min-height: 58px;
+    padding-inline: 5vw;
+  }
+
+  .intro {
+    min-height: 72vh;
+    padding: 12vh 5vw 8vh;
+  }
+
+  .intro h2 {
+    font-size: clamp(3.5rem, 16vw, 5.8rem);
+  }
+
+  .stage {
+    min-height: 92vh;
+    grid-template-columns: 1fr;
+  }
+
+  .stageContent h3 {
+    font-size: clamp(3.2rem, 14vw, 5rem);
+  }
+
+  .stageContent > p,
+  .stageContent ul {
+    margin-left: 0;
+  }
+
+  .stageContent > p {
+    margin-top: 2rem;
+  }
+
+  .stageContent ul {
+    margin-top: 2rem;
+  }
+
+  .outcome {
+    grid-template-columns: 1fr auto;
+  }
+
+  .outcome > span {
+    grid-column: 1 / -1;
+  }
+
+  .processFooter {
+    min-height: 220px;
+    padding-inline: 5vw;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.7;
+  }
+}

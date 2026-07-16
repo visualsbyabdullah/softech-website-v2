@@ -1,17 +1,21 @@
-﻿import { SiteHeader } from "@/components/layout/site-header";
-import { HeroStatic } from "@/components/sections/hero-static";
-import { ServicesV2 } from "@/components/sections/services-v2";
-import { ProductsV2 } from "@/components/sections/products-v2";
-import { Impact } from "@/components/sections/impact";
+﻿import { SoftechV3 } from "@/components/v3/softech-v3";
+import { V3Products } from "@/components/v3/v3-products";
+import { V3Services } from "@/components/v3/v3-services";
+import { V3Process } from "@/components/v3/v3-process";
+import { V3Proof } from "@/components/v3/v3-proof";
+import { V3Faq } from "@/components/v3/v3-faq";
+import { V3Contact } from "@/components/v3/v3-contact";
 
-export default function Home() {
+export default function V3Page() {
   return (
-    <main>
-      <SiteHeader />
-      <HeroStatic />
-      <ServicesV2 />
-      <ProductsV2 />
-      <Impact />
-    </main>
+    <>
+      <SoftechV3 />
+      <V3Products />
+      <V3Services />
+      <V3Process />
+      <V3Proof />
+      <V3Faq />
+      <V3Contact />
+    </>
   );
 }

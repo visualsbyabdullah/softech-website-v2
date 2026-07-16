@@ -1,0 +1,225 @@
+"use client";
+
+import { useRef } from "react";
+import { ArrowUp, ArrowUpRight } from "lucide-react";
+import styles from "./v3-contact.module.css";
+
+const contactEmail = "info@softechbusinessservices.com";
+
+export function V3Contact() {
+  const ctaRef = useRef<HTMLAnchorElement>(null);
+
+  const handlePointerMove = (
+    event: React.PointerEvent<HTMLAnchorElement>
+  ) => {
+    const target = ctaRef.current;
+    if (!target) return;
+
+    const rect = target.getBoundingClientRect();
+    target.style.setProperty("--pointer-x", `${event.clientX - rect.left}px`);
+    target.style.setProperty("--pointer-y", `${event.clientY - rect.top}px`);
+  };
+
+  return (
+    <footer className={styles.contact} id="v3-contact">
+      <div className={styles.topbar}>
+        <span>CONTACT / START SOMETHING USEFUL</span>
+        <span>PAKISTAN / UNITED KINGDOM / GLOBAL</span>
+        <span>OPEN FOR CONVERSATION</span>
+      </div>
+
+      <div className={styles.intro}>
+        <span className={styles.eyebrow}>YOUR NEXT SYSTEM</span>
+
+        <p>
+          Have an operation that feels disconnected, manual or harder than it
+          should be?
+        </p>
+      </div>
+
+      <a
+        ref={ctaRef}
+        className={styles.cta}
+        href={`mailto:${contactEmail}?subject=Project enquiry for Softech`}
+        onPointerMove={handlePointerMove}
+      >
+        <span className={styles.ctaLabel}>START A CONVERSATION</span>
+
+        <strong>
+          Tell us what needs
+          <br />
+          to work <em>better.</em>
+        </strong>
+
+        <span className={styles.ctaArrow}>
+          <ArrowUpRight size={38} strokeWidth={1.2} />
+        </span>
+
+        <span className={styles.pointer} aria-hidden="true" />
+      </a>
+
+      <div className={styles.details}>
+        <div className={styles.detailBlock}>
+          <span>NEW BUSINESS</span>
+          <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
+        </div>
+
+        <div className={styles.detailBlock}>
+          <span>DELIVERY</span>
+          <p>Pakistan / United Kingdom / Global</p>
+        </div>
+
+        <div className={styles.detailBlock}>
+          <span>CAPABILITIES</span>
+          <p>Strategy / Design / Engineering / AI</p>
+        </div>
+
+        <a className={styles.backTop} href="/v3">
+          Back to top
+          <ArrowUp size={17} strokeWidth={1.5} />
+        </a>
+      </div>
+
+      <div className={styles.footerBottom}>
+        <div className={styles.footerMain}>
+          <div className={styles.footerColumns}>
+            <div className={styles.linkGroup}>
+              <span>PRODUCTS</span>
+              <a href="#v3-products">AMS</a>
+              <a href="#v3-products">E-Bazaar</a>
+              <a href="#v3-products">Audit Tracker</a>
+              <a href="#v3-products">POS</a>
+              <a href="#v3-products">Sofi</a>
+              <a href="#v3-products">SofiGenie</a>
+            </div>
+
+            <div className={styles.linkGroup}>
+              <span>SERVICES</span>
+              <a href="#v3-services">Strategy</a>
+              <a href="#v3-services">Product Design</a>
+              <a href="#v3-services">Software Engineering</a>
+              <a href="#v3-services">AI & Automation</a>
+              <a href="#v3-services">Cloud & Infrastructure</a>
+              <a href="#v3-services">Digital Commerce</a>
+            </div>
+
+            <div className={styles.linkGroup}>
+              <span>CONTACT</span>
+
+              <a href={`mailto:${contactEmail}`}>
+                {contactEmail}
+              </a>
+
+              <p>
+                New State Life Tower, 15th Floor<br />
+                Jinnah Avenue, F-7/4 Blue Area<br />
+                Islamabad, Pakistan
+              </p>
+
+              <p>
+                Suite 3, David House<br />
+                Lodge Causeway, Fishponds<br />
+                Bristol BS16 3JB, United Kingdom
+              </p>
+            </div>
+          </div>
+
+          <div className={styles.worldPanel}>
+            <div className={styles.mapHeading}>
+              <span>GLOBAL PRESENCE / 02 OFFICES</span>
+              <strong>Connected across borders.</strong>
+            </div>
+
+            <svg
+              className={styles.worldMap}
+              viewBox="0 0 1000 500"
+              role="img"
+              aria-label="Softech office locations in Islamabad and Bristol"
+            >
+              <g className={styles.mapGrid}>
+                <path d="M0 125H1000M0 250H1000M0 375H1000" />
+                <path d="M250 0V500M500 0V500M750 0V500" />
+              </g>
+
+              <g className={styles.continents}>
+                <path d="M72 112L116 69L191 52L242 75L278 116L247 145L205 147L181 178L132 169L102 143Z" />
+                <path d="M215 187L266 207L289 252L270 302L252 361L220 419L196 365L203 303L181 254Z" />
+                <path d="M442 92L484 72L526 84L547 109L528 136L490 143L463 126Z" />
+                <path d="M478 153L534 143L576 175L587 230L561 297L525 365L491 319L467 257L451 204Z" />
+                <path d="M548 101L614 69L711 68L795 94L879 128L909 175L860 200L797 181L746 208L687 184L637 200L594 164Z" />
+                <path d="M756 226L801 235L828 267L805 291L770 273Z" />
+                <path d="M825 327L881 315L926 342L912 378L856 385L817 358Z" />
+                <path d="M918 397L936 391L944 405L927 414Z" />
+              </g>
+
+              <g className={styles.officeConnection}>
+                <path d="M493 107 Q590 72 703 156" />
+              </g>
+
+              <g
+                className={styles.mapMarker}
+                transform="translate(493 107)"
+              >
+                <circle className={styles.mapPulse} r="12" />
+                <circle className={styles.mapPulseDelay} r="12" />
+                <circle className={styles.mapDot} r="5" />
+                <text x="-18" y="-24" textAnchor="end">BRISTOL / UK</text>
+              </g>
+
+              <g
+                className={styles.mapMarker}
+                transform="translate(703 156)"
+              >
+                <circle className={styles.mapPulse} r="12" />
+                <circle className={styles.mapPulseDelay} r="12" />
+                <circle className={styles.mapDot} r="5" />
+                <text x="18" y="-20">ISLAMABAD / PK</text>
+              </g>
+            </svg>
+
+            <div className={styles.mapLocations}>
+              <span>
+                <i />
+                33.6844Â° N / 73.0479Â° E
+              </span>
+
+              <span>
+                <i />
+                51.4545Â° N / 2.5879Â° W
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.legal}>
+          <span>Â© {new Date().getFullYear()} Softech Business Services</span>
+          <span>Built for progress.</span>
+        </div>
+
+        <div
+          className={styles.wordmark}
+          onPointerMove={(event) => {
+            const rect = event.currentTarget.getBoundingClientRect();
+
+            event.currentTarget.style.setProperty(
+              "--spot-x",
+              `${event.clientX - rect.left}px`
+            );
+
+            event.currentTarget.style.setProperty(
+              "--spot-y",
+              `${event.clientY - rect.top}px`
+            );
+          }}
+        >
+          <span className={styles.wordmarkBase}>SOFTECH</span>
+          <span className={styles.wordmarkReveal} aria-hidden="true">
+            SOFTECH
+          </span>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+
